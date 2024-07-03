@@ -13,3 +13,14 @@ app.listen(port, () => {
   // Data storage
   let items = [];
 let currentId = 1;
+
+// Create a new item
+app.post('/items', (req, res) => {
+    const newItem = {
+      id: currentId++,
+      ...req.body
+    };
+    items.push(newItem);
+    res.status(201).json(newItem);
+  });
+  
