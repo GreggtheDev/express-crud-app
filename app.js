@@ -47,3 +47,13 @@ app.post('/items', (req, res) => {
     res.json(item);
   });
   
+  // Delete Operation
+  app.delete('/items/:id', (req, res) => {
+    const itemIndex = items.findIndex(i => i.id == req.params.id);
+    if (itemIndex === -1) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
+    items.splice(itemIndex, 1);
+    res.status(204).send();
+  });
+  
