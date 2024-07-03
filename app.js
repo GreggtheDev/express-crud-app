@@ -37,3 +37,13 @@ app.post('/items', (req, res) => {
     res.json(item);
   });
   
+  // Updte Operation
+  app.put('/items/:id', (req, res) => {
+    const item = items.find(i => i.id == req.params.id);
+    if (!item) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
+    Object.assign(item, req.body);
+    res.json(item);
+  });
+  
